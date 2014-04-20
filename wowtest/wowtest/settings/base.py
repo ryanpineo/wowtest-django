@@ -14,8 +14,11 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
 )
 THIRD_PARTY_APPS = (
+    'mptt',
+    'rest_framework'
 )
 WOWTEST_APPS = (
+    'store',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + WOWTEST_APPS
@@ -47,7 +50,10 @@ STATIC_URL = '/static/'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'sqlite.db'
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'wowtest',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
     }
 }
