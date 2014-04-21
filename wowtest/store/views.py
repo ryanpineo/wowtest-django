@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView
 
-from store.models import Category
+from .models import Category
 
 
 class CategoryListView(ListAPIView):

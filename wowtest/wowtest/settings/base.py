@@ -15,7 +15,8 @@ DJANGO_APPS = (
 )
 THIRD_PARTY_APPS = (
     'mptt',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 )
 WOWTEST_APPS = (
     'store',
@@ -30,7 +31,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'wowtest.urls'
 
