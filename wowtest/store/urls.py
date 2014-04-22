@@ -1,15 +1,15 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
-from store.views import CategoryListView, BreadcrumbListView
+from store.views import CategoriesListView, BreadcrumbsListView
 
 urlpatterns = patterns(
     '',
 
-    url(r'^category/$', CategoryListView.as_view(), name='category-list'),
-    url(r'^category/(?P<slug>\w+)/$', CategoryListView.as_view(),
-        name='category-list'),
+    url(r'^categories/$', CategoriesListView.as_view(), name='categories-list'),
+    url(r'^categories/(?P<slug>\w+)/$', CategoriesListView.as_view(),
+        name='categories-list'),
 
-    url(r'^breadcrumb/$', BreadcrumbListView.as_view(), name='breadcrumb-list'),
-    url(r'^breadcrumb/(?P<slug>\w+)/$', BreadcrumbListView.as_view(),
-        name='breadcrumb-list'),
+    url(r'^breadcrumbs/$', BreadcrumbsListView.as_view(), name='breadcrumbs-list'),
+    url(r'^breadcrumbs/(?P<slug>\w+)/$', BreadcrumbsListView.as_view(),
+        name='breadcrumbs-list'),
 )

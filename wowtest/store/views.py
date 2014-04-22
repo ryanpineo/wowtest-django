@@ -3,7 +3,7 @@ from rest_framework.generics import ListAPIView
 from .models import Category
 
 
-class CategoryListView(ListAPIView):
+class CategoriesListView(ListAPIView):
     lookup_field = 'slug'
     model = Category
 
@@ -12,7 +12,7 @@ class CategoryListView(ListAPIView):
         return Category.objects.filter(parent__slug=slug)
 
 
-class BreadcrumbListView(ListAPIView):
+class BreadcrumbsListView(ListAPIView):
     lookup_field = 'slug'
     model = Category
 

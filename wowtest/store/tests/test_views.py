@@ -3,19 +3,18 @@ import json
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-from ..views import CategoryListView
 from . import create_categories
 
 
-class CategoryListViewTests(TestCase):
+class CategoriesListViewTests(TestCase):
     def setUp(self):
         create_categories()
 
     def get_categories(self, category=None):
         if category:
-           response = self.client.get(reverse('category-list', args=(category,)))
+            response = self.client.get(reverse('categories-list', args=(category,)))
         else:
-            response = self.client.get(reverse('category-list'))
+            response = self.client.get(reverse('categories-list'))
         return json.loads(response.content.decode('utf-8'))
 
     def test_base_category(self):
@@ -28,16 +27,16 @@ class CategoryListViewTests(TestCase):
         self.assertEqual(1, len(categories))
 
 
-class CategoryBreadcrumbListViewTests(TestCase):
+class BreadcrumbsListViewTests(TestCase):
     def setUp(self):
         create_categories()
 
     def get_breadcrumbs(self, category=None):
         if category:
-            response = self.client.get(reverse('breadcrumb-list',
+            response = self.client.get(reverse('breadcrumbs-list',
                                                args=(category,)))
         else:
-            response = self.client.get(reverse('breadcrumb-list'))
+            response = self.client.get(reverse('breadcrumbs-list'))
         return json.loads(response.content.decode('utf-8'))
 
     def test_base_category(self):
