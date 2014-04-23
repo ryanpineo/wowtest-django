@@ -40,10 +40,10 @@ class BaseAccount(models.Model):
     mutereason = models.CharField(max_length=255)
     muteby = models.CharField(max_length=50)
 
-    expansion = models.IntegerField()
-    locale = models.IntegerField()
+    expansion = models.IntegerField(default=0)
+    locale = models.IntegerField(default=0)
     os = models.CharField(max_length=3)
-    recruiter = models.IntegerField()
+    recruiter = models.IntegerField(default=0)
 
     objects = UserManager()
     USERNAME_FIELD = 'username'
@@ -74,9 +74,14 @@ class BaseAccount(models.Model):
         """
         return True
 
+    def _create_password_hash(self, raw_password):
+        raw_password = raw_password.upper()
+        username = self.username.upper()
+        full_password = '{}:{}'.format(username, raw_password)
+        return sha1(full_password.encode('utf-8')).hexdigest().upper()
+
     def set_password(self, raw_password):
-        hash = sha1('%s:%s' % (self.username.upper(), raw_password.upper()))
-        self.password = hash.hexdigest().upper()
+        self.password = self._create_password_hash(raw_password)
         # Need to reset these so you can log ingame.
         self.v = ''
         self.s = ''
@@ -87,10 +92,7 @@ class BaseAccount(models.Model):
         Returns a boolean of whether the raw_password was correct. Handles
         hashing formats behind the scenes.
         """
-        formatted_password = '%s:%s' % (self.username.upper(),
-                                        raw_password.upper())
-        sha_pass = sha1(formatted_password.encode('utf-8')).hexdigest()
-        return sha_pass.upper() == self.password.upper()
+        return self._create_password_hash(raw_password) == self.password.upper()
 
     def set_unusable_password(self):
         # Sets a value that will never be a valid hash
