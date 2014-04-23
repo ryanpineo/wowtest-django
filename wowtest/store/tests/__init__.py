@@ -7,6 +7,7 @@ def create_categories():
     Root
      | --- Weapons
      |        | --- Swords
+     |                | --- Two Handed Swords
      |
      | --- Armor
              | --- Plate
@@ -18,11 +19,10 @@ def create_categories():
     root = c(name='Root')
 
     wep = c(name='Weapons', parent=root)
-    c(name='Swords', parent=wep)
+    swords = c(name='Swords', parent=wep)
+    c(name='Two Handed Swords', parent=swords)
 
     armor = c(name='Armor', parent=root)
     c(name='Plate', parent=armor)
     c(name='Mail', parent=armor)
     c(name='Cloth', parent=armor)
-
-

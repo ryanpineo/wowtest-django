@@ -26,6 +26,10 @@ class CategoriesListViewTests(TestCase):
         categories = self.get_categories('weapons')
         self.assertEqual(1, len(categories))
 
+    def test_hyphen_in_category_name(self):
+        categories = self.get_categories('two-handed-swords')
+        self.assertEqual(0, len(categories))
+
 
 class BreadcrumbsListViewTests(TestCase):
     def setUp(self):
@@ -48,3 +52,8 @@ class BreadcrumbsListViewTests(TestCase):
         breadcrumbs = self.get_breadcrumbs('mail')
         self.assertEqual(3, len(breadcrumbs))
         self.assertEqual('Armor', breadcrumbs[1]['name'])
+
+    def test_hypen_in_category_name(self):
+        breadcrumbs = self.get_breadcrumbs('two-handed-swords')
+        self.assertEqual(4, len(breadcrumbs))
+        self.assertEqual('Two Handed Swords', breadcrumbs[-1]['name'])
