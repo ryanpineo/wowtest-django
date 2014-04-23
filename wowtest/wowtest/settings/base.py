@@ -19,6 +19,7 @@ THIRD_PARTY_APPS = (
     'corsheaders'
 )
 WOWTEST_APPS = (
+    'auth',
     'store',
 )
 
