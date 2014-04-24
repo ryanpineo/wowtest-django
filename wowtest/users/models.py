@@ -8,6 +8,7 @@ class User(BaseUser):
 
     class Meta:
         db_table = 'account'
+        managed = False
 
     def slug(self):
         return slugify(self.username)

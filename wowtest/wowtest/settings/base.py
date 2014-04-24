@@ -16,7 +16,8 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'mptt',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'south',
 )
 WOWTEST_APPS = (
     'store',
