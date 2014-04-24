@@ -7,6 +7,7 @@ urlpatterns = patterns(
     '',
 
     url(r'^store/', include('store.urls')),
+    url(r'^users', include('auth.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 )

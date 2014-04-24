@@ -15,9 +15,7 @@ class BaseAccount(models.Model):
             message=_("Your username must start with a letter and contain only "
                       "letters and numbers.")), validators.MinLengthValidator(4)]
     )
-    password = models.CharField(
-        max_length=40, db_column='sha_pass_hash',
-        validators=[validators.MaxLengthValidator(16)])
+    password = models.CharField( max_length=40, db_column='sha_pass_hash')
     email = models.EmailField()
 
     online = models.BooleanField(default=False)
