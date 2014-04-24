@@ -1,11 +1,12 @@
 from rest_framework.generics import ListAPIView
 
 from .models import Category
+from .serializers import CategorySerializer
 
 
 class CategoriesListView(ListAPIView):
     lookup_field = 'slug'
-    model = Category
+    serializer_class = CategorySerializer
 
     def get_queryset(self):
         slug = self.kwargs.get(self.lookup_field, 'root')
@@ -14,7 +15,7 @@ class CategoriesListView(ListAPIView):
 
 class BreadcrumbsListView(ListAPIView):
     lookup_field = 'slug'
-    model = Category
+    serializer_class = CategorySerializer
 
     def get_queryset(self):
         slug = self.kwargs.get(self.lookup_field, 'root')
