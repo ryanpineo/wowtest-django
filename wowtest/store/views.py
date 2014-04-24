@@ -4,7 +4,7 @@ from .models import Category
 from .serializers import CategorySerializer
 
 
-class CategoriesListView(ListAPIView):
+class CategoryListView(ListAPIView):
     lookup_field = 'slug'
     serializer_class = CategorySerializer
 
@@ -13,7 +13,7 @@ class CategoriesListView(ListAPIView):
         return Category.objects.filter(parent__slug=slug)
 
 
-class BreadcrumbsListView(ListAPIView):
+class BreadcrumbListView(ListAPIView):
     lookup_field = 'slug'
     serializer_class = CategorySerializer
 

@@ -6,15 +6,15 @@ from django.test import TestCase
 from . import create_categories
 
 
-class CategoriesListViewTests(TestCase):
+class CategoryListViewTests(TestCase):
     def setUp(self):
         create_categories()
 
     def get_categories(self, category=None):
         if category:
-            response = self.client.get(reverse('categories-list', args=(category,)))
+            response = self.client.get(reverse('category-list', args=(category,)))
         else:
-            response = self.client.get(reverse('categories-list'))
+            response = self.client.get(reverse('category-list'))
         return json.loads(response.content.decode('utf-8'))
 
     def test_base_category(self):
@@ -31,16 +31,16 @@ class CategoriesListViewTests(TestCase):
         self.assertEqual(0, len(categories))
 
 
-class BreadcrumbsListViewTests(TestCase):
+class BreadcrumbListViewTests(TestCase):
     def setUp(self):
         create_categories()
 
     def get_breadcrumbs(self, category=None):
         if category:
-            response = self.client.get(reverse('breadcrumbs-list',
+            response = self.client.get(reverse('breadcrumb-list',
                                                args=(category,)))
         else:
-            response = self.client.get(reverse('breadcrumbs-list'))
+            response = self.client.get(reverse('breadcrumb-list'))
         return json.loads(response.content.decode('utf-8'))
 
     def test_base_category(self):
