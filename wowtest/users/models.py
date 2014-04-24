@@ -1,9 +1,11 @@
 from django.utils.text import slugify
 
-from .base_account import BaseAccount
+from .base_user import BaseUser
 
 
-class Account(BaseAccount):
+class User(BaseUser):
+    REQUIRED_FIELDS = ['email']
+
     class Meta:
         db_table = 'account'
 

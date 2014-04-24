@@ -19,8 +19,8 @@ THIRD_PARTY_APPS = (
     'corsheaders'
 )
 WOWTEST_APPS = (
-    'auth',
     'store',
+    'users',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + WOWTEST_APPS
@@ -36,6 +36,8 @@ MIDDLEWARE_CLASSES = (
 )
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+AUTH_USER_MODEL = 'users.User'
 
 ROOT_URLCONF = 'wowtest.urls'
 

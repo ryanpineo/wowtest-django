@@ -1,9 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.core import validators
 from django.utils.text import slugify
 
 from rest_framework import serializers
-
-from .models import Account
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -11,18 +10,15 @@ class UserSerializer(serializers.ModelSerializer):
         validators=[validators.MaxLengthValidator(16)], write_only=True)
     slug = serializers.CharField(read_only=True)
 
-    class Meta:
-        model = Account
-
 
 class UserCreateReadSerializer(UserSerializer):
     class Meta:
-        model = Account
+        model = get_user_model()
         fields = ('id', 'username', 'email', 'password', 'slug')
         read_only_fields = ('id',)
 
     def restore_object(self, attrs, instance=None):
-        User = Account
+        User = get_user_model()
         user = User(username=attrs['username'], email=attrs['email'])
         user.set_password(attrs['password'])
         return user

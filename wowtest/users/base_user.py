@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 
-class BaseAccount(models.Model):
+class BaseUser(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(
         max_length=32, unique=True, validators=[validators.RegexValidator(
